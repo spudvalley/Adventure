@@ -9,6 +9,7 @@ namespace Adventure.Objects
     internal class Player : GameObject
     {
         float playerSpeed;
+        float rotation;
 
         // controls
         protected Keys upInput;
@@ -33,6 +34,8 @@ namespace Adventure.Objects
             this.attackInput = controls[4];
             this.interactInput = controls[5];
 
+            this.rotation = (float)(180 * (Math.PI / 180));
+
         }
 
         
@@ -41,21 +44,25 @@ namespace Adventure.Objects
             if (kState.IsKeyDown(upInput))
             {
                 position.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.rotation = (float)(0 * (Math.PI / 180));
             }
 
-            if (kState.IsKeyDown(downInput))
+            else if (kState.IsKeyDown(downInput))
             {
                 position.Y += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.rotation = (float)(180 * (Math.PI / 180));
             }
 
-            if (kState.IsKeyDown(leftInput))
+            else if (kState.IsKeyDown(leftInput))
             {
                 position.X -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.rotation = (float)(270 * (Math.PI / 180));
             }
 
-            if (kState.IsKeyDown(rightInput))
+            else if (kState.IsKeyDown(rightInput))
             {
                 position.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.rotation = (float)(90 * (Math.PI / 180));
             }
 
             if (position.X >  graphics.PreferredBackBufferWidth - texture.Width / 2)
@@ -77,9 +84,21 @@ namespace Adventure.Objects
             }
         }
 
-        public void Render(GameTime gameTime)
+        public override void Draw(SpriteBatch batch)
         {
-
+            if (texture != null)
+            {
+                batch.Draw(
+                texture,
+                position,
+                null,
+                Color.White,
+                rotation,
+                new Vector2(texture.Width / 2, texture.Height / 2),
+                Vector2.One,
+                SpriteEffects.None,
+                0f);
+            }
         } 
 
         public void setControls(List<Keys> controls)

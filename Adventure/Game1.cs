@@ -60,7 +60,7 @@ namespace Adventure
             // object constants
             string playerTextureString = "player";
             Vector2 playerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
-            float playerSpeed = 100f;
+            float playerSpeed = 150f;
 
             // create objects
             objectList = new List<GameObject>
