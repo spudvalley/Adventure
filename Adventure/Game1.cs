@@ -65,6 +65,9 @@ namespace Adventure
             // create objects
             objectList = new List<GameObject>
             {
+                // new Tile(this, "wall", 1, 0, 1, _graphics.PreferredBackBufferHeight, _graphics.PreferredBackBufferWidth, 10, 10),
+                // new Tile(this, "grass", 0, 0, 1, _graphics.PreferredBackBufferHeight, _graphics.PreferredBackBufferWidth, 10, 10),
+                new Screen(this, _graphics.PreferredBackBufferHeight, _graphics.PreferredBackBufferWidth, 10, 10, 0, 0, ""),
                 new Player(this, playerTextureString, playerPosition, playerSpeed, controls)
             };
 
@@ -102,7 +105,6 @@ namespace Adventure
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
             foreach (GameObject gameObject in objectList)
