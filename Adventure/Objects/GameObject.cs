@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 namespace Adventure.Objects
 {
@@ -30,7 +31,7 @@ namespace Adventure.Objects
             }
         }
 
-        public virtual void Update(KeyboardState kState, MouseState mState, GameTime gameTime, GraphicsDeviceManager graphics)
+        public virtual void Update(KeyboardState kState, MouseState mState, GameTime gameTime, GraphicsDeviceManager graphics, List<Keys> controls)
         {
         }
 

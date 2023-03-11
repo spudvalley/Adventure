@@ -26,6 +26,8 @@ namespace Adventure
         // game objects
         List<GameObject> objectList;
 
+        List<Keys> controls;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -47,14 +49,15 @@ namespace Adventure
             interactInput = Keys.E;
             
             quitInput = Keys.Escape;
-            List<Keys> controls = new List<Keys> 
+            controls = new List<Keys> 
             {
                 upInput, 
                 downInput, 
                 leftInput, 
                 rightInput, 
                 attackInput, 
-                interactInput
+                interactInput,
+                quitInput
             };
 
             // object constants
@@ -95,7 +98,7 @@ namespace Adventure
             // update game objects
             foreach (GameObject gameObject in objectList)
             {
-                gameObject.Update(kState, mState, gameTime, _graphics);
+                gameObject.Update(kState, mState, gameTime, _graphics, controls);
             }
 
             base.Update(gameTime);

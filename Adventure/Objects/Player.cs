@@ -39,8 +39,49 @@ namespace Adventure.Objects
         }
 
         
-        public override void Update(KeyboardState kState, MouseState mState, GameTime gameTime, GraphicsDeviceManager graphics)
+        public override void Update(KeyboardState kState, MouseState mState, GameTime gameTime, GraphicsDeviceManager graphics, List<Keys> controls)
         {
+            // update controls
+            this.upInput = controls[0];
+            this.downInput = controls[1];
+            this.leftInput = controls[2];
+            this.rightInput = controls[3];
+            this.attackInput = controls[4];
+            this.interactInput = controls[5];
+
+            float diagonalSpeed = (float)((float) playerSpeed / Math.Sqrt(2));
+
+            
+            //// up left
+            //else if (kState.IsKeyDown(upInput) && kState.IsKeyDown(leftInput))
+            //{
+            //    position.Y -= diagonalSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    position.X -= diagonalSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    this.rotation = (float)(315 * (Math.PI / 180));
+            //}
+            //// up right
+            //else if (kState.IsKeyDown(upInput) && kState.IsKeyDown(rightInput))
+            //{
+            //    position.Y -= diagonalSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    position.X += diagonalSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    this.rotation = (float)(45 * (Math.PI / 180));
+            //}
+            //// down right
+            //else if (kState.IsKeyDown(downInput) && kState.IsKeyDown(rightInput))
+            //{
+            //    position.Y += diagonalSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    position.X += diagonalSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    this.rotation = (float)(135 * (Math.PI / 180));
+
+            //}
+            //// down left
+            //else if (kState.IsKeyDown(downInput) && kState.IsKeyDown(leftInput))
+            //{
+            //    position.Y += diagonalSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    position.X -= diagonalSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    this.rotation = (float)(225 * (Math.PI / 180));
+
+            //}
             if (kState.IsKeyDown(upInput))
             {
                 position.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -69,6 +110,7 @@ namespace Adventure.Objects
             {
                 position.X = graphics.PreferredBackBufferWidth - texture.Width / 2;
             }
+
             else if (position.X < texture.Width / 2)
             {
                 position.X = texture.Width / 2;
