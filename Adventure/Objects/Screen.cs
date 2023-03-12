@@ -195,19 +195,7 @@ namespace Adventure.Objects
         {
             foreach (Tile tile in screenTiles)
             {
-                if (tile.getTexture() != null)
-                {
-                    batch.Draw(
-                    tile.getTexture(),
-                    tile.getPosition(),
-                    null,
-                    Color.White,
-                    0f,
-                    new Vector2(tile.getTexture().Width / 2, tile.getTexture().Height / 2),
-                    Vector2.One,
-                    SpriteEffects.None,
-                    0f);
-                }
+               tile.Draw(batch);
             }
 
         }

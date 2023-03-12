@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Adventure.Objects
 {
@@ -13,6 +14,8 @@ namespace Adventure.Objects
         int gameWidth;
         int numTilesHigh;
         int numTilesWide;
+        float rotation;
+        Random rand;
 
         public Tile(Game myGame, string textureString, int xIndex, int yIndex, int collision, int gameHeight, int gameWidth, int numTilesHigh, int numTilesWide)
             : base(myGame)
@@ -26,6 +29,14 @@ namespace Adventure.Objects
             this.numTilesHigh = numTilesHigh;
             this.numTilesWide = numTilesWide;
             this.position = positionFromIndex(xIndex, yIndex);
+            this.rand = new Random();
+
+            if (this.textureName == "grass")
+            {
+                int randomRotation = rand.Next(0, 5);
+                this.rotation = (float)((randomRotation * 90) * (Math.PI / 180));
+            }
+            
         }
 
         private Vector2 positionFromIndex(int x,int y)
@@ -34,6 +45,24 @@ namespace Adventure.Objects
             float yPos = (y * (gameHeight / numTilesHigh)) + ((gameHeight / numTilesHigh) / 2);
 
             return new Vector2(xPos,yPos);
+        }
+
+        public override void Draw(SpriteBatch batch)
+        {
+
+            if (texture != null)
+            {
+                batch.Draw(
+                texture,
+                position,
+                null,
+                Color.White,
+                rotation,
+                new Vector2(texture.Width / 2, texture.Height / 2),
+                Vector2.One,
+                SpriteEffects.None,
+                0f);
+            }
         }
 
         public Texture2D getTexture() { return texture; }
